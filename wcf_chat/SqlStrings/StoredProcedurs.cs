@@ -1,7 +1,4 @@
-﻿using System.Security.Policy;
-using System.Xml.Linq;
-
-namespace UserForms.SqlCommnads
+﻿namespace Wcf.SqlCommnads
 {
     internal class Commands
     {

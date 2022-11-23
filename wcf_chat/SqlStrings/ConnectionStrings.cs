@@ -1,4 +1,4 @@
-﻿namespace UserForms.SqlStrings
+﻿namespace Wcf.SqlStrings
 {
     internal class ConnectionStrings
     {

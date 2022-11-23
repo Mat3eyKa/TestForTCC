@@ -14,7 +14,7 @@ namespace ServiceReference
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Person", Namespace="http://schemas.datacontract.org/2004/07/UserForms.Models")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Person", Namespace="http://schemas.datacontract.org/2004/07/Wcf.Models")]
     public partial class Person : object
     {
         
@@ -185,34 +185,34 @@ namespace ServiceReference
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IServiceChat")]
-    public interface IServiceChat
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IService")]
+    public interface IService
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/GetPersons", ReplyAction="http://tempuri.org/IServiceChat/GetPersonsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPersons", ReplyAction="http://tempuri.org/IService/GetPersonsResponse")]
         System.Threading.Tasks.Task<ServiceReference.Person[]> GetPersonsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/GeteSerchedPersons", ReplyAction="http://tempuri.org/IServiceChat/GeteSerchedPersonsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GeteSerchedPersons", ReplyAction="http://tempuri.org/IService/GeteSerchedPersonsResponse")]
         System.Threading.Tasks.Task<ServiceReference.Person[]> GeteSerchedPersonsAsync(string name, string surname, string patronymic, string dateOfBirth, string phone, string city, string street, string house, string room);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Create", ReplyAction="http://tempuri.org/IServiceChat/CreateResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Create", ReplyAction="http://tempuri.org/IService/CreateResponse")]
         System.Threading.Tasks.Task CreateAsync(string name, string surname, string patronymic, string dateOfBirth, string phone, string city, string street, string house, string room);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Update", ReplyAction="http://tempuri.org/IServiceChat/UpdateResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Update", ReplyAction="http://tempuri.org/IService/UpdateResponse")]
         System.Threading.Tasks.Task UpdateAsync(string id, string name, string surname, string patronymic, string dateOfBirth, string phone, string city, string street, string house, string room);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Detele", ReplyAction="http://tempuri.org/IServiceChat/DeteleResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Detele", ReplyAction="http://tempuri.org/IService/DeteleResponse")]
         System.Threading.Tasks.Task DeteleAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public interface IServiceChatChannel : ServiceReference.IServiceChat, System.ServiceModel.IClientChannel
+    public interface IServiceChannel : ServiceReference.IService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public partial class ServiceChatClient : System.ServiceModel.ClientBase<ServiceReference.IServiceChat>, ServiceReference.IServiceChat
+    public partial class ServiceClient : System.ServiceModel.ClientBase<ServiceReference.IService>, ServiceReference.IService
     {
         
         /// <summary>
@@ -222,35 +222,35 @@ namespace ServiceReference
         /// <param name="clientCredentials">Учетные данные клиента.</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
         
-        public ServiceChatClient() : 
-                base(ServiceChatClient.GetDefaultBinding(), ServiceChatClient.GetDefaultEndpointAddress())
+        public ServiceClient() : 
+                base(ServiceClient.GetDefaultBinding(), ServiceClient.GetDefaultEndpointAddress())
         {
-            this.Endpoint.Name = EndpointConfiguration.NetTcpBinding_IServiceChat.ToString();
+            this.Endpoint.Name = EndpointConfiguration.NetTcpBinding_IService.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ServiceChatClient(EndpointConfiguration endpointConfiguration) : 
-                base(ServiceChatClient.GetBindingForEndpoint(endpointConfiguration), ServiceChatClient.GetEndpointAddress(endpointConfiguration))
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public ServiceChatClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(ServiceChatClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
+        public ServiceClient(EndpointConfiguration endpointConfiguration) : 
+                base(ServiceClient.GetBindingForEndpoint(endpointConfiguration), ServiceClient.GetEndpointAddress(endpointConfiguration))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ServiceChatClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(ServiceChatClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
+        public ServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+                base(ServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ServiceChatClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(ServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
+        {
+            this.Endpoint.Name = endpointConfiguration.ToString();
+            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
+        }
+        
+        public ServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
         {
         }
@@ -292,7 +292,7 @@ namespace ServiceReference
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IServiceChat))
+            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IService))
             {
                 System.ServiceModel.NetTcpBinding result = new System.ServiceModel.NetTcpBinding();
                 result.MaxBufferSize = int.MaxValue;
@@ -305,7 +305,7 @@ namespace ServiceReference
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IServiceChat))
+            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IService))
             {
                 return new System.ServiceModel.EndpointAddress("net.tcp://localhost:8302/");
             }
@@ -314,18 +314,18 @@ namespace ServiceReference
         
         private static System.ServiceModel.Channels.Binding GetDefaultBinding()
         {
-            return ServiceChatClient.GetBindingForEndpoint(EndpointConfiguration.NetTcpBinding_IServiceChat);
+            return ServiceClient.GetBindingForEndpoint(EndpointConfiguration.NetTcpBinding_IService);
         }
         
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
         {
-            return ServiceChatClient.GetEndpointAddress(EndpointConfiguration.NetTcpBinding_IServiceChat);
+            return ServiceClient.GetEndpointAddress(EndpointConfiguration.NetTcpBinding_IService);
         }
         
         public enum EndpointConfiguration
         {
             
-            NetTcpBinding_IServiceChat,
+            NetTcpBinding_IService,
         }
     }
 }

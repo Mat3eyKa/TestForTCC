@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace UserForms.Models
+﻿namespace Wcf.Models
 {
     public class Person
     {

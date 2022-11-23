@@ -9,10 +9,10 @@ namespace UserForms
     public partial class lbMain : Form
     {
         private int CountOfChecked = 3;
-        readonly ServiceChatClient chatClient;
+        readonly ServiceClient Client;
         public lbMain()
         {
-            chatClient = new ServiceChatClient(new ServiceChatClient.EndpointConfiguration());
+            Client = new ServiceClient(new ServiceClient.EndpointConfiguration());
             InitializeComponent();
             LoadData();
             MaintoolStripDropDownButton.DropDown.Closing += DropDown_Closing;
@@ -24,7 +24,7 @@ namespace UserForms
         {
             try
             {
-                dgvMain.DataSource = await chatClient.GetPersonsAsync();
+                dgvMain.DataSource = await Client.GetPersonsAsync();
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace UserForms
             if (texDateofbirth.Visible)
                 data = Convert.ToDateTime(texDateofbirth.Text).ToShortDateString();
            
-           dgvMain.DataSource = await chatClient.GeteSerchedPersonsAsync
+           dgvMain.DataSource = await Client.GeteSerchedPersonsAsync
             (
                name:texName.Text,
                surname:texSurname.Text,

@@ -7,7 +7,7 @@ namespace Host
     {
         static void Main()
         {
-            using (var host = new ServiceHost(typeof(UserForms.ServiceChat)))
+            using (var host = new ServiceHost(typeof(Wcf.Service)))
             {
                 host.Open();
                 Console.WriteLine("Хост стартовал!");

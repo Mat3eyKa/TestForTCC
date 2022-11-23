@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
-using UserForms.Models;
+using Wcf.Models;
 
-namespace UserForms
+namespace Wcf
 {
     [ServiceContract]
-    public interface IServiceChat
+    public interface IService
     {
         [OperationContract]
         List<Person> GetPersons();

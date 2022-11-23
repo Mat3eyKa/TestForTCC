@@ -6,11 +6,11 @@ namespace AdminForms
 {
     public partial class Adding : Form
     {
-        readonly ServiceChatClient chatClient;
+        readonly ServiceClient Client;
         public Adding()
         {
             TopMost = true;
-            chatClient = new ServiceChatClient(new ServiceChatClient.EndpointConfiguration());
+            Client = new ServiceClient(new ServiceClient.EndpointConfiguration());
             InitializeComponent();
         }
         private void CheckLetters(object sender, KeyPressEventArgs e)
@@ -29,7 +29,7 @@ namespace AdminForms
         {
             if (CheckData())
             {
-                await chatClient.CreateAsync(
+                await Client.CreateAsync(
                 name: texAddName.Text,
                 surname: texAddSurname.Text,
                 patronymic: texAddPatronymic.Text,

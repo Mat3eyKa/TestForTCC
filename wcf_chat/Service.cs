@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.ServiceModel;
-using UserForms.Models;
-using UserForms.SqlCommnads;
-using UserForms.SqlStrings;
+using Wcf.Models;
+using Wcf.SqlCommnads;
+using Wcf.SqlStrings;
 
-namespace UserForms
+namespace Wcf
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
-    public class ServiceChat : IServiceChat
+    public class Service : IService
     {
         public List<Person> GetPersons() =>
             Select(Commands.selectAllCommand);

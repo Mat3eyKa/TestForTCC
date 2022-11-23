@@ -10,11 +10,11 @@ namespace AdminForms
     public partial class AdmMain : Form
     {
         private int CountOfChecked = 3;
-        readonly ServiceChatClient chatClient;
+        readonly ServiceClient Client;
         public static bool IsOpenAdding = false;
         public AdmMain()
         {
-            chatClient = new ServiceChatClient(new ServiceChatClient.EndpointConfiguration());
+            Client = new ServiceClient(new ServiceClient.EndpointConfiguration());
             InitializeComponent();
             LoadData();
             MaintoolStripDropDownButton.DropDown.Closing += DropDown_Closing;
@@ -25,7 +25,7 @@ namespace AdminForms
         {
             try
             {
-                dgvMain.DataSource = await chatClient.GetPersonsAsync();
+                dgvMain.DataSource = await Client.GetPersonsAsync();
             }
             catch (Exception ex)
             {
@@ -104,13 +104,13 @@ namespace AdminForms
                 {
                     int ind = dgvMain.Rows.Count - 1;
                     if (MessageBox.Show("Удалить Строку?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        chatClient.DeteleAsync(Convert.ToInt32(dgvMain.Rows[e.RowIndex].Cells["clId"].Value));
+                        Client.DeteleAsync(Convert.ToInt32(dgvMain.Rows[e.RowIndex].Cells["clId"].Value));
 
                 }
                 else if (task == "Изменить")
                 {
                     int ind = e.RowIndex;
-                    chatClient.UpdateAsync
+                    Client.UpdateAsync
                     (
                         id: dgvMain.Rows[ind].Cells["clId"].Value.ToString(),
                         name: dgvMain.Rows[ind].Cells["clName"].Value.ToString(),
@@ -134,7 +134,7 @@ namespace AdminForms
             if (texDateofbirth.Visible)
                 data = Convert.ToDateTime(texDateofbirth.Text).ToShortDateString();
 
-            dgvMain.DataSource = await chatClient.GeteSerchedPersonsAsync
+            dgvMain.DataSource = await Client.GeteSerchedPersonsAsync
              (
                 name: texName.Text,
                 surname: texSurname.Text,
